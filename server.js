@@ -60,31 +60,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// app.get("/", (req, res) => {
-//     res.render("welcome", {
-//         name: req.user.name,
-//     });
-// });
-
-// // to render login form
-// app.get("/login", (req, res) => {
-//     res.render("login");
-// });
-
-// app.post(
-//     "/login",
-//     passport.authenticate("local", {
-//         successRedirect: "/",
-//         failureRedirect: "/login",
-//         failureFlash: true,
-//     })
-// );
-
-// // to render sign up form
-// app.get("/signup", (req, res) => {
-//     res.render("signUp.ejs");
-// });
-
 // getting the routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
