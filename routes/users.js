@@ -3,6 +3,7 @@ const usersRouter = express.Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const passport = require("passport");
+const { ensureAuthenticated } = require("../config/auth");
 
 // login handle
 usersRouter.get("/login", (req, res) => {
@@ -94,8 +95,20 @@ usersRouter.post("/signup", (req, res) => {
 
 usersRouter.get("/logout", (req, res) => {
     req.logout();
-    req.flash("success_msg", "Now logged out");
+    req.flash("success_msg", "Successfully logged out");
     res.redirect("/users/login");
+});
+
+usersRouter.get("/profile", ensureAuthenticated, (req, res) => {
+    res.render("./partials/profile", {
+        user: req.user,
+    });
+});
+
+usersRouter.get("/profile_settings", ensureAuthenticated, (req, res) => {
+    res.render("./partials/profile_settings", {
+        user: req.user,
+    });
 });
 
 module.exports = usersRouter;
