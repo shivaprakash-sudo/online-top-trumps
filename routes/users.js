@@ -111,4 +111,10 @@ usersRouter.get("/profile_settings", ensureAuthenticated, (req, res) => {
     });
 });
 
+usersRouter.get("/create_card_deck", ensureAuthenticated, (req, res) => {
+    res.render("./partials/create_card_deck", {
+        user: req.user,
+    });
+});
+
 module.exports = usersRouter;
