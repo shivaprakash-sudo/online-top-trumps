@@ -42,7 +42,7 @@ app.use(
 // express session
 app.use(
     session({
-        secret: process.env.SESSION_SECRET,
+        secret: "rghsoigougshgsidgesbdogi",
         resave: true,
         saveUninitialized: true,
     })
