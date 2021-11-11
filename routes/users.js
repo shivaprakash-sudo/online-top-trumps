@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const passport = require("passport");
 const { ensureAuthenticated } = require("../config/auth");
+const Card = require("../models/card");
 
 // login handle
 usersRouter.get("/login", (req, res) => {
@@ -112,8 +113,13 @@ usersRouter.get("/profile_settings", ensureAuthenticated, (req, res) => {
 });
 
 usersRouter.get("/create_card_deck", ensureAuthenticated, (req, res) => {
-    res.render("./partials/create_card_deck", {
+    res.render("./card-decks/card", {
         user: req.user,
+    });
+});
+usersRouter.post("/create_card_deck", ensureAuthenticated, (req, res) => {
+    const card = new Card({
+        name: req.body.name,
     });
 });
 

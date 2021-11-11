@@ -20,6 +20,8 @@ mongoose
         useUnifiedTopology: true,
     })
     .then(() => {
+        // listening for requests
+        app.listen(process.env.PORT || 3000);
         console.log("Connected to Mongoose");
     })
     .catch((err) => {
@@ -30,6 +32,7 @@ mongoose
 // setting up ejs
 app.set("view engine", "ejs");
 app.set("layout", "layouts/layout");
+app.set("card-decks", "/");
 app.set(expressLayouts);
 
 // bodyparser
@@ -42,7 +45,7 @@ app.use(
 // express session
 app.use(
     session({
-        secret: "rghsoigougshgsidgesbdogi",
+        secret: process.env.SESSION_SECRET,
         resave: true,
         saveUninitialized: true,
     })
@@ -63,6 +66,3 @@ app.use((req, res, next) => {
 // getting the routes
 app.use("/", require("./routes/index"));
 app.use("/users", require("./routes/users"));
-
-// listening for the port
-app.listen(process.env.PORT || 3000);
