@@ -1,0 +1,32 @@
+<div class="form-row">
+    <div class="form-item form-item-no-grow">
+        <input type="file" name="card-image" class="card-image filepond" placeholder="Image" />
+    </div>
+</div>
+
+<div class="form-row form-item">
+    <div class="form-item">
+        <input type="text" name="card-name" placeholder="Card name" value="<%= card.cardName %>" />
+    </div>
+</div>
+
+<div class="attributes-container">
+    <div class="form-item">
+        <div class="form-row">
+            <input type="text" name="att1" placeholder="Attribute" value="<%= card.attributes[0] %>" />
+            <input type="number" name="val1" placeholder="Value" value="<%= card.values[0] %>" />
+        </div>
+    </div>
+    <div class="form-item">
+        <div class="form-row">
+            <input type="text" name="att2" placeholder="Attribute" value="<%= card.attributes[1] %>" />
+            <input type="number" name="val2" placeholder="Value" value="<%= card.values[1] %>" />
+        </div>
+    </div>
+    <div class="form-item">
+        <div class="form-row">
+            <input type="text" name="att3" placeholder="Attribute" value="<%= card.attributes[2] %>" />
+            <input type="number" name="val3" placeholder="Value" value="<%= card.attributes[2] %>" />
+        </div>
+    </div>
+</div>

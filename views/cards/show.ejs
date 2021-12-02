@@ -1,0 +1,20 @@
+<h2 class="page-header">
+    <%= card.cardName %>
+</h2>
+<div class="card-details">
+    <div>
+        <img class="card-image" src="<%= card.coverImagePath %>" />
+        <div class="card-details-btn-grid">
+            <a class="btn btn-primary" href="/cards/<%= card.id %>/edit">Edit</a>
+            <%- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
+                <a class="btn btn-primary card-details-user-button" href="/users/<%= card.user.id %>">View user</a
+      >
+    </div>
+  </div>
+  <div class="card-details-grid">
+    <div class="card-details-label">User:</div>
+    <div><%= card.user.name %></div>
+    <div class="card-details-label">Create on</div>
+    <div><%= card.createdAt.toDateString() %></div>
+  </div>
+</div>

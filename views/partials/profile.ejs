@@ -10,8 +10,10 @@
             </td>
         </tr>
         <tr>
-            <th>Total number of Decks</th>
-            <td>0</td>
+            <th>Total number of cards</th>
+            <td>
+                <%= card %>
+            </td>
         </tr>
         <tr>
             <th>Number of Wins</th>
@@ -23,4 +25,10 @@
         </tr>
     </tbody>
 </table>
-<a href="/users/profile_settings">Edit Profile</a>
+<div class="cards">
+    <h3>My Cards</h3>
+    <div class="cards-container"></div>
+</div>
+<div>
+    <a href="/users/profile_settings">Edit Profile</a>
+</div>

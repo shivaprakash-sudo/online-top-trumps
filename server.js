@@ -12,6 +12,18 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 require("./config/passport")(passport);
+const methodOverride = require("method-override");
+
+const indexRouter = require("./routes/index");
+const userRouter = require("./routes/users");
+const cardRouter = require("./routes/cards");
+
+// setting up ejs
+app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
+app.set("layout", "layouts/layout");
+app.set(expressLayouts);
+app.use(methodOverride("_method"));
 
 // database connection
 mongoose
@@ -29,11 +41,8 @@ mongoose
         console.log(err);
     });
 
-// setting up ejs
-app.set("view engine", "ejs");
-app.set("layout", "layouts/layout");
-app.set("card-decks", "/");
-app.set(expressLayouts);
+//getting css files
+app.use(express.static("public"));
 
 // bodyparser
 app.use(
@@ -64,5 +73,6 @@ app.use((req, res, next) => {
 });
 
 // getting the routes
-app.use("/", require("./routes/index"));
-app.use("/users", require("./routes/users"));
+app.use("/", indexRouter);
+app.use("/users", userRouter);
+app.use("/cards", cardRouter);

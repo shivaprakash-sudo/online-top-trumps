@@ -1,41 +1,37 @@
 const mongoose = require("mongoose");
+
+const reqString = {
+    type: String,
+    required: true,
+};
+
 const cardSchema = new mongoose.Schema({
-    imgName: {
-        type: String,
+    cardName: reqString,
+    attributes: [String],
+    values: [Number],
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now,
+    },
+    cardImage: {
+        type: Buffer,
         required: true,
     },
-    name: {
-        type: String,
+    cardImageType: reqString,
+    addedBy: {
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: "User",
     },
-    short_desc: {
-        type: String,
-        required: true,
-    },
-    att1: {
-        type: String,
-        required: true,
-    },
-    att2: {
-        type: String,
-        required: true,
-    },
-    att3: {
-        type: String,
-        required: true,
-    },
-    val1: {
-        type: Number,
-        required: true,
-    },
-    val2: {
-        type: Number,
-        required: true,
-    },
-    val3: {
-        type: Number,
-        required: true,
-    },
+});
+
+cardSchema.virtual("cardImagePath").get(function() {
+    if (this.cardImage != null && this.cardImageType != null) {
+        return `data:${
+      this.cardImageType
+    };charset=utf-8;base64,${this.cardImage.toString("base64")}`;
+    }
 });
 
 const Card = mongoose.model("Card", cardSchema);

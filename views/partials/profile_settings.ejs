@@ -5,7 +5,8 @@
     <h3>
         <%= user.name %>
     </h3>
-    <form action="/users/profile_settings" method="POST">
+    <form action="/users/<%= user.id %>" method="POST">
+        <input type="hidden" , name="_method" , value="PUT" ) />
         <div>
             <div>
                 <label class="labels" for="name">Name</label>
@@ -20,20 +21,14 @@
         </div>
         <div>
             <div>
-                <label class="labels" for="password">Old Password</label>
-                <input type="password" name="password" id="password" />
+                <label class="labels" for="newPassword">New Password</label>
+                <input type="password" name="newPassword" id="newPassword" />
             </div>
         </div>
         <div>
-            <div>
-                <label class="labels" for="password">New Password</label>
-                <input type="password" name="password" id="password" />
-            </div>
-        </div>
-        <div>
-            <a href="#">Save Changes</a>
-            <a href="/dashboard">Go to Dashboard</a>
+            <a href="/profile">Save Changes</a>
+            <a href="/users/dashboard">Go to Dashboard</a>
         </div>
     </form>
-    <button type="submit">Delete Account</button>
+    <a href="/users/:id/delete">Delete Account</a>
 </div>

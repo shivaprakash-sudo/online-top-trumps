@@ -1,21 +1,23 @@
 const express = require("express");
-const indexRouter = express.Router();
+const router = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
+const Card = require("../models/card");
 
 // login page
-indexRouter.get("/", (req, res) => {
-    res.render("index");
+router.get("/", async(req, res) => {
+    let cards;
+
+    try {
+        cards = await Card.find().sort({ createdAt: "desc" }).limit(10).exec();
+    } catch (error) {
+        cards = [];
+    }
+    res.render("index", { cards: cards });
 });
 
 // sign up page
-indexRouter.get("/signup", (req, res) => {
+router.get("/signup", (req, res) => {
     res.render("signup");
 });
 
-indexRouter.get("/dashboard", ensureAuthenticated, (req, res) => {
-    res.render("dashboard", {
-        user: req.user,
-    });
-});
-
-module.exports = indexRouter;
+module.exports = router;
