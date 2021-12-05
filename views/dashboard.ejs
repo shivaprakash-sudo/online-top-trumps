@@ -1,9 +1,14 @@
-<h1>Dashboard</h1>
-<p>Welcome
-    <%= user.name %>
-</p>
-<%- include("./partials/header") %>
+<%- include("partials/header.ejs") %>
+
+    <p><em> Welcome <%= user.name %>! </em></p>
+
+    <a href="/cards/new">Add a card</a>
+
+    <h2 class="page-header">Recently added cards</h2>
+
     <div>
-        <h3>My Card Decks</h3>
-        <a href="/users/create_card_deck">Create a Deck</a>
+        <% cards.forEach(card => { %>
+            <img height="150" width="100" src="<%= card.cardImagePath %>" />
+            <% }) %>
     </div>
+    <%# include("partials/cardGrid", { cards: cards, large :true }) %>

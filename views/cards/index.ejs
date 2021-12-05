@@ -1,0 +1,19 @@
+<h2 class="page-header">Search a card</h2>
+<form action="/cards" method="GET">
+    <div class="form-row">
+        <div class="form-item">
+            <label>Card name</label>
+            <input type="text" name="cardName" value="<%= searchOptions.cardName %>" />
+        </div>
+    </div>
+    <div class="form-row form-row-end">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
+<br />
+<div>
+    <% cards.forEach(card => { %>
+        <img height="350" width="250" src="<%= card.cardImagePath %>" />
+        <% }) %>
+</div>
+<%# include("../partials/cardGrid", { cards: cards, large :true }) %>

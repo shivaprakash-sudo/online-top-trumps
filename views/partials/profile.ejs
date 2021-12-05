@@ -10,17 +10,18 @@
             </td>
         </tr>
         <tr>
-            <th>Total number of Decks</th>
-            <td>0</td>
-        </tr>
-        <tr>
-            <th>Number of Wins</th>
-            <td>0</td>
-        </tr>
-        <tr>
-            <th>Win Percentage</th>
-            <td>0</td>
+            <th>Total number of cards</th>
+            <td>
+                <%= %>
+            </td>
         </tr>
     </tbody>
 </table>
-<a href="/users/profile_settings">Edit Profile</a>
+<div class="cards">
+    <h3>My Cards</h3>
+    <div class="cards-container">
+        <% cards.forEach(card => {%>
+            <img height="300" width="200" src="<%= card.cardImagePath %>" />
+            <% }) %>
+    </div>
+</div>
