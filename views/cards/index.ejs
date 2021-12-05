@@ -3,7 +3,7 @@
     <div class="form-row">
         <div class="form-item">
             <label>Card name</label>
-            <input type="text" name="card-name" value="<%= searchOptions.cardName %>" />
+            <input type="text" name="cardName" value="<%= searchOptions.cardName %>" />
         </div>
     </div>
     <div class="form-row form-row-end">
@@ -11,4 +11,9 @@
     </div>
 </form>
 <br />
-<% include("../partials/cardGrid", { cards: cards, large :true }) %>
+<div>
+    <% cards.forEach(card => { %>
+        <img height="350" width="250" src="<%= card.cardImagePath %>" />
+        <% }) %>
+</div>
+<%# include("../partials/cardGrid", { cards: cards, large :true }) %>

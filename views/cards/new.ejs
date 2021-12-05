@@ -1,9 +1,11 @@
 <h2 class="page-header">New Card</h2>
 
-<form action="/cards" method="POST">
-    <%- include('_form_fields') %>
-        <div class="form-row form-row-end btn-row">
-            <a class="btn btn-danger" href="/cards">Cancel</a>
-            <button class="btn btn-primary" type="submit">Create</button>
-        </div>
-</form>
+<%# include ("../partials/errorMessages") %>
+
+    <form action="/cards" method="POST" enctype="multipart/form-data">
+        <%- include('_form_fields') %>
+            <div class="form-row form-row-end btn-row">
+                <a class="btn btn-danger" href="/cards">Cancel</a>
+                <button class="btn btn-primary" type="submit">Create</button>
+            </div>
+    </form>

@@ -1,9 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
+
 const Card = require("../models/card");
 const User = require("../models/user");
-const imageMimeTypes = ["image/jpeg", "image/png", "images/gif"];
+
+const uploadPath = path.join("public", Card.cardImageBasePath);
+const imageMimeTypes = ["image/jpeg", "image/png", "image/jpg"];
 const { ensureAuthenticated } = require("../config/auth");
+
+const upload = multer({
+    dest: uploadPath,
+    fileFilter: (req, file, callback) => {
+        callback(null, imageMimeTypes.includes(file.mimetype));
+    },
+});
 
 // All Cards Route
 router.get("/", async(req, res) => {
@@ -28,28 +40,66 @@ router.get("/new", ensureAuthenticated, async(req, res) => {
 });
 
 // Create Card Route
-router.post("/", ensureAuthenticated, async(req, res) => {
-    const card = new Card({
-        cardName: req.body.cardName,
-        attributes: [req.body.attr1, req.body.attr2, req.body.attr3],
-        values: [req.body.val1, req.body.val2, req.body.val3],
-        addedBy: req.body.user,
-        createdAt: new Date(req.body.createdAt),
-    });
-    savecardImage(card, req.body.cardImage);
+router.post(
+    "/",
+    ensureAuthenticated,
+    upload.single("cardImage"),
+    async(req, res) => {
+        const fileName = req.file != null ? req.file.filename : null;
+        const { cardName, attr1, attr2, attr3, val1, val2, val3 } = req.body;
 
-    try {
-        const newCard = await card.save();
-        res.redirect(`cards/${newCard.id}`);
-    } catch {
-        renderNewPage(res, card, true);
+        console.log({
+            cardName: cardName,
+            attributes: [attr1, attr2, attr3],
+            values: [val1, val2, val3],
+            cardImageType: fileName,
+        });
+
+        // let errors = [];
+
+        // if (!cardName || !attr1 || !attr2 || !attr3 || !val1 || !val2 || !val3) {
+        //     errors.push({
+        //         msg: "Please fill in all fields to create a card",
+        //     });
+        // }
+
+        // // if there are any errors, re-render the page
+        // if (errors.length > 0) {
+        //     res.render("cards/new", {
+        //         errors: errors,
+        //         cardName: cardName,
+        //         attr1: attr1,
+        //         attr2: attr2,
+        //         attr3: attr3,
+        //         val1: val1,
+        //         val2: val2,
+        //         val3: val3,
+        //     });
+        // } else {}
+        const card = new Card({
+            cardName: cardName,
+            attributes: [attr1, attr2, attr3],
+            values: [val1, val2, val3],
+            cardImageType: fileName,
+            addedBy: req.session.passport.user,
+        });
+        // savecardImage(card, cardImage);
+
+        try {
+            const newCard = await card.save();
+            res.redirect(`cards/${newCard.id}`);
+            //res.redirect("cards");
+        } catch (error) {
+            console.log(error);
+            renderNewPage(res, card, true);
+        }
     }
-});
+);
 
 // Show Card Route
 router.get("/:id", ensureAuthenticated, async(req, res) => {
     try {
-        const card = await Card.findById(req.params.id).populate("user").exec();
+        const card = await Card.findById(req.params.id).populate("addedBy").exec();
         res.render("cards/show", { card: card });
     } catch {
         res.redirect("/");
@@ -133,6 +183,7 @@ async function renderFormPage(res, card, form_type, hasError = false) {
         }
         res.render(`cards/${form_type}`, params);
     } catch {
+        console.log("Error!");
         res.redirect("/cards");
     }
 }
@@ -141,8 +192,8 @@ function savecardImage(card, cardImageEncoded) {
     if (cardImageEncoded == null) return;
     const cardImage = JSON.parse(cardImageEncoded);
     if (cardImage != null && imageMimeTypes.includes(cardImage.type)) {
-        card.cardImageImage = new Buffer.from(cardImage.data, "base64");
-        card.cardImageImageType = cardImage.type;
+        card.cardImage = new Buffer.from(cardImage.data, "base64");
+        card.cardImageType = cardImage.type;
     }
 }
 

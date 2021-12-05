@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
+const path = require("path");
 
-const reqString = {
-    type: String,
-    required: true,
-};
+const cardImageBasePath = "uploads/cardImages";
 
 const cardSchema = new mongoose.Schema({
-    cardName: reqString,
+    cardName: {
+        type: String,
+        required: true,
+    },
     attributes: [String],
     values: [Number],
     createdAt: {
@@ -14,11 +15,14 @@ const cardSchema = new mongoose.Schema({
         required: true,
         default: Date.now,
     },
-    cardImage: {
-        type: Buffer,
+    // cardImage: {
+    //     type: Buffer,
+    //     required: true,
+    // },
+    cardImageType: {
+        type: String,
         required: true,
     },
-    cardImageType: reqString,
     addedBy: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -27,13 +31,16 @@ const cardSchema = new mongoose.Schema({
 });
 
 cardSchema.virtual("cardImagePath").get(function() {
-    if (this.cardImage != null && this.cardImageType != null) {
-        return `data:${
-      this.cardImageType
-    };charset=utf-8;base64,${this.cardImage.toString("base64")}`;
+    // this.cardImage != null &&
+    if (this.cardImageType != null) {
+        // return `data:${
+        //   this.cardImageType
+        // };charset=utf-8;base64,${this.cardImage.toString("base64")}`;
+        return path.join("/", cardImageBasePath, this.cardImageType);
     }
 });
 
 const Card = mongoose.model("Card", cardSchema);
 
 module.exports = Card;
+module.exports.cardImageBasePath = cardImageBasePath;

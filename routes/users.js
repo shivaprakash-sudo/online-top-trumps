@@ -24,7 +24,7 @@ router.post("/login", (req, res, next) => {
     })(req, res, next);
 });
 
-// handling the POST request to the signup directory:validation checks
+// POST request to the signup
 router.post("/signup", (req, res) => {
     const { name, email, password, password2 } = req.body;
     let errors = [];
@@ -100,104 +100,66 @@ router.get("/logout", (req, res) => {
     res.redirect("/users/login");
 });
 
-router.get("/dashboard", ensureAuthenticated, (req, res) => {
-    res.render("dashboard", {
-        user: req.user,
-        cards: req.cards,
-    });
+router.get("/dashboard", ensureAuthenticated, async(req, res) => {
+    let query = Card.find();
+    if (req.query.cardName != null && req.query.cardName != "") {
+        query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
+    }
+    try {
+        const cards = await query.exec();
+        res.render("dashboard", {
+            user: req.user,
+            cards: cards,
+            searchOptions: req.query,
+        });
+    } catch (error) {
+        console.log("Error showing dashboard!");
+        console.log(error);
+        res.redirect("/dashboard");
+    }
 });
 
-router.get("/profile", ensureAuthenticated, (req, res) => {
-    res.render("./partials/profile", {
-        user: req.user,
-        card: req.card,
+router.get("/profile", ensureAuthenticated, async(req, res) => {
+    const query = Card.find({
+        addedBy: req.session.passport.user,
     });
+
+    if (req.query.cardName != null && req.query.cardName != "") {
+        query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
+    }
+    try {
+        const cards = await query.exec();
+        res.render("./partials/profile", {
+            user: req.user,
+            cards: cards,
+        });
+    } catch {
+        res.redirect("/profile");
+    }
+
+    // res.render("./partials/profile", {
+    //     user: req.user,
+    //     cards: req.cards,
+    // });
+});
+
+// getting user details from other accounts
+router.get("/:id", ensureAuthenticated, async(req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.render("users/show", {
+            user: req.user,
+        });
+    } catch (error) {
+        console.log(error);
+        res.send("Error while getting user!");
+    }
 });
 
 router.get("/profile_settings", ensureAuthenticated, (req, res) => {
     res.render("./partials/profile_settings", {
         user: req.user,
     });
-});
-
-// update user profile route
-router.put("/:id", ensureAuthenticated, async(req, res) => {
-    let updateUser;
-
-    try {
-        updateUser = await User.findById(req.params.id);
-
-        const { name, email, newPassword } = req.body;
-        let errors = [];
-        console.log(
-            " Name: " + name + " Email: " + email + " newPass: " + newPassword
-        );
-
-        // check if user doesn't enter any info
-        if (!name || !email || !newPassword) {
-            errors.push({
-                msg: "Please fill in at least one feild to update your profile!",
-            });
-        }
-
-        // check for the password length
-        const MIN_PASS_LENGTH = 8;
-        if (oldPassword.length < MIN_PASS_LENGTH) {
-            errors.push({
-                msg: "Password must be at least 8 characters in length",
-            });
-        }
-
-        // if there are errors, re-render edit page and show errors
-        if (errors.length > 0) {
-            res.render("./partials/profile_settings", {
-                errors: errors,
-                name: name,
-                email: email,
-                newPassword: newPassword,
-            });
-        } else {
-            // validation is passed if the user enter correct details
-            updateUser.updateOne({ email: email }, {
-                    $set: {
-                        name: name,
-                        email: email,
-                        password: newPassword,
-                    },
-                },
-                (err, res) => {
-                    if (err) throw err;
-                    console.log(`Updated ${User.fingById(req.params.id).name}`);
-                }
-            );
-
-            // hashing and encrypting the user password
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(updateUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    // save pass to hash
-                    updateUser.password = hash;
-                    // save user
-                    updateUser.save().then((value) => {
-                        console.log(value);
-                        req.flash(
-                            "success_msg",
-                            "You have successfully updated your profile!"
-                        );
-                        res.redirect("/profile");
-                    });
-                });
-            });
-        }
-    } catch (error) {
-        if (updateUser != null) {
-            res.render("./partials/profile_settings", {
-                user: req.user,
-            });
-        } else {
-            redirect("/");
-        }
-    }
 });
 
 module.exports = router;

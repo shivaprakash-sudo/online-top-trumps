@@ -2,3 +2,4 @@
 node_modules
 package-lock.json
 passport_config.js
+public/uploads/cardImages
