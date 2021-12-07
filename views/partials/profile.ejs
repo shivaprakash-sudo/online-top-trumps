@@ -19,9 +19,11 @@
 </table>
 <div class="cards">
     <h3>My Cards</h3>
-    <div class="cards-container">
-        <% cards.forEach(card => {%>
-            <img height="300" width="200" src="<%= card.cardImagePath %>" />
-            <% }) %>
-    </div>
+    <!-- <div class="cards-container">
+        <%# cards.forEach(card => {%>
+            <img height="300" width="200" src="<%#= card.cardImagePath %>" />
+            <%# }) %>
+    </div> -->
+
+    <%- include("cardGrid", { cards: cards, large :true }) %>
 </div>

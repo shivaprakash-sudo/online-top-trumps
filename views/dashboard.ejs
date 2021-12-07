@@ -6,9 +6,9 @@
 
     <h2 class="page-header">Recently added cards</h2>
 
-    <div>
-        <% cards.forEach(card => { %>
-            <img height="150" width="100" src="<%= card.cardImagePath %>" />
-            <% }) %>
-    </div>
-    <%# include("partials/cardGrid", { cards: cards, large :true }) %>
+    <!-- <div>
+        <%# cards.forEach(card => { %>
+            <img height="150" width="100" src="<%#= card.cardImagePath %>" />
+            <%# }) %>
+    </div> -->
+    <%- include("partials/cardGrid", { cards: cards, large :true }) %>
