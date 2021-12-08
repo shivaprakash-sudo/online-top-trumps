@@ -1,13 +1,18 @@
-<% cardImageClass = locals.large ? 'card-image-large' : '' %>
-    <% cardGridClass =
-locals.large ? 'card-grid-large' : '' %>
-        <div class="card-grid <%= cardGridClass %>">
+<%# cardImageClass = locals.large ? 'card-image-large' : '' %>
+    <%# cardGridClass
+= locals.large ? 'card-grid-large' : '' %>
+        <div class="container-fluid row g-3 card-grid <%#= cardGridClass %>">
             <% cards.forEach(card => { %>
-                <a href="/cards/<%= card.id %>">
-    <img
-      class="card-image <%= cardImageClass %>"
-      src="<%= card.cardImagePath %>"
-    />
-  </a>
+                <div class="card col-sm" style="max-width: 18rem">
+                    <img width="250" height="150" class="card-img-top card-image <%#= cardImageClass %>" src="<%= card.cardImagePath %>" />
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= card.cardName %>
+                        </h5>
+                        <a class="card-link" href="/cards/<%= card.id %>">
+        Click to see the card
+      </a>
+                    </div>
+                </div>
                 <% }) %>
         </div>

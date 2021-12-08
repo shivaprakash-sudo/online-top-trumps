@@ -106,7 +106,7 @@ router.get("/dashboard", ensureAuthenticated, async(req, res) => {
         query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
     }
     try {
-        const cards = await query.exec();
+        const cards = await query.limit(5).exec();
         res.render("dashboard", {
             user: req.user,
             cards: cards,
@@ -124,6 +124,8 @@ router.get("/profile", ensureAuthenticated, async(req, res) => {
         addedBy: req.session.passport.user,
     });
 
+    // const totalCards = query.countDocuments();
+
     if (req.query.cardName != null && req.query.cardName != "") {
         query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
     }
@@ -132,6 +134,7 @@ router.get("/profile", ensureAuthenticated, async(req, res) => {
         res.render("./partials/profile", {
             user: req.user,
             cards: cards,
+            // cardCount: totalCards,
         });
     } catch {
         res.redirect("/profile");
@@ -156,10 +159,27 @@ router.get("/:id", ensureAuthenticated, async(req, res) => {
     }
 });
 
+// getting user profile
 router.get("/profile_settings", ensureAuthenticated, (req, res) => {
     res.render("./partials/profile_settings", {
         user: req.user,
     });
+});
+
+// deleting the user profile. along with their cards
+router.delete("/:id", async(req, res) => {
+    let user;
+    let cards;
+    try {
+        user = await User.findByIdAndDelete(req.params.id);
+        cards = await Card.deleteMany({
+            addedBy: req.params.id,
+        });
+        res.redirect("/users/login");
+    } catch (error) {
+        console.log(error);
+        res.redirect("/profile_settings");
+    }
 });
 
 module.exports = router;

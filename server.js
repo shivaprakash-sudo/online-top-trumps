@@ -22,7 +22,8 @@ const cardRouter = require("./routes/cards");
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout");
-app.set(expressLayouts);
+
+app.use(expressLayouts);
 app.use(methodOverride("_method"));
 
 // database connection
@@ -41,7 +42,7 @@ mongoose
         console.log(err);
     });
 
-//getting css files
+//getting css and other static files
 app.use(express.static("public"));
 
 // bodyparser

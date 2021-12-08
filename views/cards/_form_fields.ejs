@@ -1,32 +1,59 @@
-<div class="form-row">
-    <div class="form-item form-item-no-grow">
-        <input type="file" name="cardImage" class="card-image filepond" placeholder="Image" />
+<div class="card border-secondary" style="width: 18rem">
+    <input type="file" name="cardImage" class="form-control card-img-top card-image filepond" placeholder="Image" id="card-image" required />
+
+    <div class="card-body form-item">
+        <input type="text" class="card-title form-control border-light" name="cardName" placeholder="Card name" required />
     </div>
+
+    <table class="table border-light">
+        <tbody>
+            <tr>
+                <td>
+                    <input class="form-control border-light" type="text" name="attr1" placeholder="Attribute" required />
+                </td>
+                <td>
+                    <input class="form-control border-light" type="number" name="val1" placeholder="Value" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="form-control border-light" type="text" name="attr2" placeholder="Attribute" required />
+                </td>
+                <td>
+                    <input class="form-control border-light" type="number" name="val2" placeholder="Value" required />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="form-control border-light" type="text" name="attr3" placeholder="Attribute" required />
+                </td>
+                <td>
+                    <input class="form-control border-light" type="number" name="val3" placeholder="Value" required />
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<div class="form-row form-item">
-    <div class="form-item">
-        <input type="text" name="cardName" placeholder="Card name" />
-    </div>
-</div>
-
+<!-- 
 <div class="attributes-container">
     <div class="form-item">
         <div class="form-row">
-            <input type="text" name="attr1" placeholder="Attribute" />
-            <input type="number" name="val1" placeholder="Value" />
+            <input type="text" name="attr1" placeholder="Attribute" required />
+            <input type="number" name="val1" placeholder="Value" required />
         </div>
     </div>
     <div class="form-item">
         <div class="form-row">
-            <input type="text" name="attr2" placeholder="Attribute" />
-            <input type="number" name="val2" placeholder="Value" />
+            <input type="text" name="attr2" placeholder="Attribute" required />
+            <input type="number" name="val2" placeholder="Value" required />
         </div>
     </div>
     <div class="form-item">
         <div class="form-row">
-            <input type="text" name="attr3" placeholder="Attribute" />
-            <input type="number" name="val3" placeholder="Value" />
+            <input type="text" name="attr3" placeholder="Attribute" required />
+            <input type="number" name="val3" placeholder="Value" required />
         </div>
     </div>
 </div>
+</div> -->

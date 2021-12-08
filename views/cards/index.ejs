@@ -1,19 +1,16 @@
-<h2 class="page-header">Search a card</h2>
-<form action="/cards" method="GET">
-    <div class="form-row">
-        <div class="form-item">
-            <label>Card name</label>
-            <input type="text" name="cardName" value="<%= searchOptions.cardName %>" />
-        </div>
-    </div>
-    <div class="form-row form-row-end">
-        <button class="btn btn-primary" type="submit">Search</button>
-    </div>
-</form>
-<br />
-<div>
+<%- include ("../partials/after_login_header.ejs") %>
+
+    <h2 class="page-header">Search a card</h2>
+    <form class="d-flex" action="/cards" method="GET">
+        <input type="search" class="form-control me-2" name="cardName" placeholder="Card name" aria-label="Search" value="<%= searchOptions.cardName %>" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <br />
+
+    <!-- <div>
     <% cards.forEach(card => { %>
         <img height="350" width="250" src="<%= card.cardImagePath %>" />
         <% }) %>
-</div>
-<%# include("../partials/cardGrid", { cards: cards, large :true }) %>
+</div> -->
+
+    <%- include("../partials/cardGrid", { cards: cards, large :true }) %>

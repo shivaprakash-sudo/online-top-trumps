@@ -1,6 +1,6 @@
 :root {
-    --card-image-width: 200px;
-    --card-image-width-large: 325px;
+    --card-image-width: 18rem;
+    --card-image-width-large: 21rem;
     --card-image-aspect-ratio: 0.75;
 }
 
@@ -55,4 +55,8 @@
 .card-details-user-button {
     grid-area: user;
     justify-self: stretch;
+}
+
+.card-container {
+    max-width: 18rem;
 }

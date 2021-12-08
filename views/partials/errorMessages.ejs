@@ -2,23 +2,31 @@
 <% if (typeof errors != "undefined") { %>
     <% errors.forEach(function (error) {
 %>
-        <p class="error-message">
-            <%= error.msg %>
-        </p>
+        <div class="alert alert-danger" role="alert">
+            <p class="error-message">
+                <%= error.msg %>
+            </p>
+        </div>
         <% }) %>
             <% } %>
                 <% if (success_msg != "") { %>
-                    <p class="success-message">
-                        <%= success_msg %>
-                    </p>
+                    <div class="alert alert-success" role="alert">
+                        <p class="success-message">
+                            <%= success_msg %>
+                        </p>
+                    </div>
                     <% } %>
                         <% if (error_msg != "") { %>
-                            <p class="error-message">
-                                <%= error_msg %>
-                            </p>
+                            <div class="alert alert-danger" role="alert">
+                                <p class="error-message">
+                                    <%= error_msg %>
+                                </p>
+                            </div>
                             <% } %>
                                 <% if (error != "") { %>
-                                    <p class="error-message">
-                                        <%= error %>
-                                    </p>
+                                    <div class="alert alert-danger" role="alert">
+                                        <p class="error-message">
+                                            <%= error %>
+                                        </p>
+                                    </div>
                                     <% } %>

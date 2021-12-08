@@ -1,29 +1,40 @@
-<h3>
-    <%= user.name %>
-</h3>
-<table>
-    <tbody>
-        <tr>
-            <th>Email</th>
-            <td>
-                <%= user.email %>
-            </td>
-        </tr>
-        <tr>
-            <th>Total number of cards</th>
-            <td>
-                <%= %>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<div class="cards">
-    <h3>My Cards</h3>
-    <!-- <div class="cards-container">
-        <%# cards.forEach(card => {%>
-            <img height="300" width="200" src="<%#= card.cardImagePath %>" />
-            <%# }) %>
-    </div> -->
+<%- include ("../partials/after_login_header.ejs") %>
 
-    <%- include("cardGrid", { cards: cards, large :true }) %>
-</div>
+    <div class="container-fluid">
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th scope="row">Name</th>
+                    <td>
+                        <%= user.name %>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Email</th>
+                    <td>
+                        <%= user.email %>
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <th scope="row">Total number of cards</th>
+                    <td>
+                        <%#= cardCount %>
+                    </td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+            <button class="btn btn-danger" type="submit">Delete Account</button>
+        </form>
+    </div>
+
+    <div>
+        <h3>My Cards</h3>
+
+        <div class="grid">
+            <%- include("cardGrid", { cards: cards, large :true }) %>
+        </div>
+    </div>
