@@ -1,12 +1,7 @@
 <%- include("partials/after_login_header.ejs") %>
 
-    <p><em> Welcome <%= user.name %>! </em></p>
-
-    <h2 class="page-header">Recently added cards</h2>
-
-    <!-- <div>
-        <%# cards.forEach(card => { %>
-            <img height="150" width="100" src="<%#= card.cardImagePath %>" />
-            <%# }) %>
-    </div> -->
-    <%- include("partials/cardGrid", { cards: cards, large :true }) %>
+    <div class="container-fluid">
+        <p><em> Welcome <%= user.lastName %>! </em></p>
+        <h2 class="page-header">Recently added cards</h2>
+        <%- include("partials/cardGrid", { cards: cards, large :true }) %>
+    </div>

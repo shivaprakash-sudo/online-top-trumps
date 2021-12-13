@@ -1,15 +1,17 @@
 <%- include ("../partials/after_login_header.ejs") %>
 
-    <h2 class="page-header">New Card</h2>
-
-    <%# include ("../partials/errorMessages") %>
-
-        <form action="/cards" method="POST" enctype="multipart/form-data">
-            <div class="container-fluid new-card-container">
-                <%- include('_form_fields') %>
-                    <div class="d-flex justify-content-evenly form-row form-row-end btn-row">
-                        <a class="btn btn-danger" href="/users/dashboard">Cancel</a>
-                        <button class="btn btn-primary" type="submit">Create</button>
-                    </div>
-            </div>
-        </form>
+    <div class="container-fluid p-3 text-center">
+        <h2 class="page-header">New Card</h2>
+        <%# include ("../partials/errorMessages") %>
+            <form action="/cards" method="POST" enctype="multipart/form-data">
+                <div class="container-fluid new-card-container">
+                    <%- include('_form_fields') %>
+                        <div class="container-fluid d-flex align-items-center">
+                            <a class="btn btn-danger flex-fill" href="/users/dashboard">Cancel</a>
+                            <button class="btn btn-primary mb-0 flex-fill" type="submit">
+          Create
+        </button>
+                        </div>
+                </div>
+            </form>
+    </div>

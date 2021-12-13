@@ -6,7 +6,8 @@
                 <tr>
                     <th scope="row">Name</th>
                     <td>
-                        <%= user.name %>
+                        <%= user.firstName %>
+                            <%= user.lastName %>
                     </td>
                 </tr>
                 <tr>
@@ -23,18 +24,18 @@
                 </tr> -->
             </tbody>
         </table>
-    </div>
 
-    <div>
-        <form method="POST" action="/users/<%= user.id %>?_method=DELETE">
-            <button class="btn btn-danger" type="submit">Delete Account</button>
-        </form>
-    </div>
+        <div>
+            <form method="POST" action="/users/<%= user.id %>?_method=DELETE">
+                <button class="btn btn-danger mb-3" type="submit">Delete Account</button>
+            </form>
+        </div>
 
-    <div>
-        <h3>My Cards</h3>
+        <div>
+            <h3>My Cards</h3>
 
-        <div class="grid">
-            <%- include("cardGrid", { cards: cards, large :true }) %>
+            <div class="grid">
+                <%- include("cardGrid", { cards: cards, large :true }) %>
+            </div>
         </div>
     </div>

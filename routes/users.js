@@ -26,12 +26,17 @@ router.post("/login", (req, res, next) => {
 
 // POST request to the signup
 router.post("/signup", (req, res) => {
-    const { name, email, password, password2 } = req.body;
+    const { firstName, lastName, email, password, password2 } = req.body;
     let errors = [];
-    console.log(" Name: " + name + " Email: " + email + " Pass: " + password);
+    console.log({
+        firstName: firstName,
+        lastName: lastName,
+        Email: email,
+        Pass: password,
+    });
 
     // check if user doesn't enter any info
-    if (!name || !email || !password || !password2) {
+    if (!firstName || !email || !password || !password2) {
         errors.push({ msg: "Please fill in all fields!" });
     }
 
@@ -50,7 +55,8 @@ router.post("/signup", (req, res) => {
     if (errors.length > 0) {
         res.render("signup", {
             errors: errors,
-            name: name,
+            firstName: firstName,
+            lastName: lastName,
             email: email,
             password: password,
             password2: password2,
@@ -61,10 +67,18 @@ router.post("/signup", (req, res) => {
             console.log(user);
             if (user) {
                 errors.push({ msg: "This email is already registered" });
-                res.render("signup", { errors, name, email, password, password2 });
+                res.render("signup", {
+                    errors,
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    password2,
+                });
             } else {
                 const newUser = new User({
-                    name: name,
+                    firstName: firstName,
+                    lastName: lastName,
                     email: email,
                     password: password,
                 });
@@ -139,24 +153,6 @@ router.get("/profile", ensureAuthenticated, async(req, res) => {
     } catch {
         res.redirect("/profile");
     }
-
-    // res.render("./partials/profile", {
-    //     user: req.user,
-    //     cards: req.cards,
-    // });
-});
-
-// getting user details from other accounts
-router.get("/:id", ensureAuthenticated, async(req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        res.render("users/show", {
-            user: req.user,
-        });
-    } catch (error) {
-        console.log(error);
-        res.send("Error while getting user!");
-    }
 });
 
 // getting user profile
@@ -168,11 +164,9 @@ router.get("/profile_settings", ensureAuthenticated, (req, res) => {
 
 // deleting the user profile. along with their cards
 router.delete("/:id", async(req, res) => {
-    let user;
-    let cards;
     try {
-        user = await User.findByIdAndDelete(req.params.id);
-        cards = await Card.deleteMany({
+        let user = await User.findByIdAndDelete(req.params.id);
+        let cards = await Card.deleteMany({
             addedBy: req.params.id,
         });
         res.redirect("/users/login");
@@ -180,6 +174,16 @@ router.delete("/:id", async(req, res) => {
         console.log(error);
         res.redirect("/profile_settings");
     }
+});
+
+router.get("/feedback", (req, res) => {
+    res.render("./partials/feedback");
+});
+
+router.get("/about-top-trumps", (req, res) => {
+    res.render("top_trumps/about", {
+        user: req.user,
+    });
 });
 
 module.exports = router;

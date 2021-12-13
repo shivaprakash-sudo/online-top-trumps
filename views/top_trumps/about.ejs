@@ -1,0 +1,55 @@
+<% if (user != undefined) { %>
+    <%- include("../partials/after_login_header.ejs")
+%>
+        <% } else { %>
+            <%- include("../before_login_header.ejs") %>
+                <% } %>
+
+                    <div class="container-fluid mb-3 mx-auto">
+                        <div class="mt-4 p-4 text-black rounded bg-light">
+                            <h1>What is Top Trumps?</h1>
+                            <p>
+                                Top Trumps is a card game, in which players use certain attribute from the card to win the other players' cards, whoever has the best value of that attribute wins the card.
+                            </p>
+                            <div>
+                                <h4><strong>Rules:</strong></h4>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Game must be played from 2 to multiple people.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Each player must have at least one card at the start of the game.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Start from one person and go left or right, according to your preference.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Read out an attribute from the card aloud.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Every player must then say the value of that attribute aloud.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Whoever has the best value of that attribute takes the cards of all other players.
+                                    </li>
+                                    <li class="list-group-item">
+                                        If there is a draw, put those cards seperately.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Whoever finishes their deck, loses and gets eliminated from the game.
+                                    </li>
+                                    <li class="list-group-item">
+                                        Repeat this until only one player has all the cards.
+                                    </li>
+                                    <li class="list-group-item">
+                                        The player with all the cards wins the game.
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr />
+                            <div class="container-fluid">
+                                <h4><em>Example cards</em></h4>
+                                <img class="img-fluid img-thumbnail w-25 show-card" src="/images/top_trump_sample_cards.png" alt="Top Trumps sample cards" />
+                            </div>
+                        </div>
+                    </div>
