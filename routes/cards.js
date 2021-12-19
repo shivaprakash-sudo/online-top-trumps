@@ -18,15 +18,22 @@ const upload = multer({
 });
 
 // All Cards Route
-router.get("/", async(req, res) => {
-    let query = Card.find();
+router.get("/", ensureAuthenticated, async(req, res) => {
+    let query = Card.find().sort({ $natural: -1 });
+    let user = req.session.passport.user;
+    let addedBy = Card.find({
+        addedBy: user,
+    });
     if (req.query.cardName != null && req.query.cardName != "") {
         query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
     }
     try {
         const cards = await query.exec();
+        const userCards = await addedBy.exec();
         res.render("cards/index", {
+            user: req.user,
             cards: cards,
+            userCards: userCards,
             searchOptions: req.query,
         });
     } catch {

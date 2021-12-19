@@ -1,38 +1,40 @@
 <%- include ("before_login_header.ejs") %>
 
-    <div class="container-fluid py-2 px-3 mx-auto">
-        <h3>Sign Up</h3>
-        <%- include("./partials/errorMessages") %>
-            <form action="/users/signup" method="POST">
-                <div class="form-floating mb-3 col-sm-4">
-                    <input type="text" class="form-control" id="signup-name" name="firstName" placeholder="Enter Name" value="<%= typeof firstName != 'undefined' ? firstName : '' %>" />
-                    <label class="form-label" for="signup-firstName">First name</label>
-                </div>
-                <div class="form-floating mb-3 col-sm-4">
-                    <input type="text" class="form-control" id="signup-lastName" name="lastName" placeholder="Enter Name" value="<%= typeof lastName != 'undefined' ? lastName : '' %>" />
-                    <label class="form-label" for="signup-name">Last name</label>
-                </div>
-                <div class="form-floating mb-3 col-sm-4">
-                    <input type="email" class="form-control" id="signup-email" name="email" placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
-                    <label class="form-label" for="signup-email">Email</label>
-                </div>
-                <div class="form-floating mb-3 col-sm-4">
-                    <input type="password" class="form-control" id="signup-password" name="password" placeholder="Enter Password" value="<%= typeof password != 'undefined' ? password : '' %>" aria-describedby="password-help-block" />
-                    <label class="form-label" for="signup-password">Password</label>
-                    <div id="password-help-block" class="form-text">
-                        Your password must be at least 8 characters long.
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="col-lg-3">
+            <h3 class="display-5 text-center">Sign Up</h3>
+            <%- include("./partials/errorMessages") %>
+                <form action="/users/signup" method="POST">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="signup-name" name="firstName" placeholder="Enter Name" value="<%= typeof firstName != 'undefined' ? firstName : '' %>" />
+                        <label class="form-label" for="signup-firstName">First name</label>
                     </div>
-                </div>
-                <div class="form-floating mb-3 col-sm-4">
-                    <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
-                    <label class="form-label" for="password2">Confirm Password</label>
-                </div>
-                <button type="submit" class="btn btn-outline-primary form-floating mb-3">
-      Sign Up
-    </button>
-            </form>
-            <p>
-                Already have an account?
-                <a class="link-primary" href="/users/login"> <u>Login</u></a>
-            </p>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="signup-lastName" name="lastName" placeholder="Enter Name" value="<%= typeof lastName != 'undefined' ? lastName : '' %>" />
+                        <label class="form-label" for="signup-name">Last name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="signup-email" name="email" placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+                        <label class="form-label" for="signup-email">Email</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="signup-password" name="password" placeholder="Enter Password" value="<%= typeof password != 'undefined' ? password : '' %>" aria-describedby="password-help-block" />
+                        <label class="form-label" for="signup-password">Password</label>
+                        <div id="password-help-block" class="form-text">
+                            Your password must be at least 8 characters long.
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+                        <label class="form-label" for="password2">Confirm Password</label>
+                    </div>
+                    <button type="submit" class="container-fluid btn btn-outline-primary mb-3 signup-btn">
+        Sign Up
+      </button>
+                </form>
+                <p>
+                    Already have an account?
+                    <a class="link-primary" href="/users/login"> <u>Login</u></a>
+                </p>
+        </div>
     </div>

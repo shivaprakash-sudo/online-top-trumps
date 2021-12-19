@@ -1,14 +1,35 @@
 <%- include ("../partials/after_login_header.ejs") %>
 
     <div class="container-fluid my-auto">
-        <h2 class="page-header">Search a card</h2>
+        <div>
+            <h2 class="page-header mb-1">All cards</h2>
+            <p class="small text-muted">...by everyone on this web-app.</p>
+        </div>
 
         <form class="d-flex justify-content-between align-items-center" action="/cards" method="GET">
             <input type="search" class="form-control me-2" name="cardName" placeholder="Card name" aria-label="Search" value="<%= searchOptions.cardName %>" />
-            <button class="btn btn-outline-success mb-0" type="submit">Search</button>
+            <button class="btn mb-0 srch-btn" type="submit">Search</button>
         </form>
-
-        <br />
+        <div class="p-2 d-flex">
+            <p class="small text-muted me-2">Total cards:
+                <%= cards.length %>
+            </p>
+            <p class="small text-muted">Your cards:
+                <%= userCards.length %>
+            </p>
+        </div>
     </div>
 
-    <%- include("../partials/cardGrid", { cards: cards, large :true }) %>
+    <%- include("../partials/cardGrid", { cards: cards }) %>
+        <!-- <div class="p-3">
+            <nav aria-label="Cards navigation">
+                <ul class="pagination justify-content-between">
+                    <li class="page-item">
+                        <a class="page-link theme-btn" href="#">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link theme-btn" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div> -->

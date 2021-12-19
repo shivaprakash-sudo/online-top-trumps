@@ -3,12 +3,5 @@
     <input type="search" class="form-control me-2" name="cardName" placeholder="Card name" aria-label="Search" value="<%= searchOptions.cardName %>" />
     <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
-<br />
 
-<!-- <div>
-    <% cards.forEach(card => { %>
-        <img height="350" width="250" src="<%= card.cardImagePath %>" />
-        <% }) %>
-</div> -->
-
-<%- include("../partials/cardGrid", { cards: cards, large :true }) %>
+<%- include("../partials/cardGrid", { cards: cards }) %>

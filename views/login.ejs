@@ -1,18 +1,18 @@
 <%- include ("before_login_header.ejs") %>
-    <div class="container-fluid mx-auto">
-        <div>
-            <h3>Login</h3>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="col-lg-3">
+            <h3 class="display-4 text-center">Login</h3>
             <%- include("./partials/errorMessages") %>
                 <form action="/users/login" method="POST">
-                    <div class="form-floating mb-3 col-sm-4">
+                    <div class="form-floating mb-3">
                         <input type="email" class="form-control" id="login-email" name="email" placeholder="Email" />
                         <label class="form-label" for="login-email">Email</label>
                     </div>
-                    <div class="form-floating mb-3 col-sm-4">
+                    <div class="form-floating mb-3">
                         <input type="password" class="form-control" id="login-password" name="password" placeholder="Password" />
                         <label class="form-label" for="login-password">Password</label>
                     </div>
-                    <button type="submit" class="btn btn-outline-primary btn-block mb-3">
+                    <button type="submit" class="container-fluid btn btn-outline-primary mb-3 login-btn">
         Login
       </button>
                 </form>

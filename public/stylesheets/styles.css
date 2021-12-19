@@ -3,6 +3,9 @@
     --background-color: #e1f2f7;
     --theme-color: #ef0d50;
     --light-theme-color: #ec4d7f;
+    --default-font-size: 18px;
+    --btn-font-size: 1rem;
+    --white: #fff;
 }
 
 html {
@@ -12,6 +15,7 @@ html {
 *,
 *::before,
 *::after {
+    font-size: var(--default-font-size);
     font-family: "Alegreya Sans", sans-serif;
     margin: 0;
     padding: 0;
@@ -23,9 +27,45 @@ html {
     text-decoration: none;
 }
 
-.log-out-btn:hover {
-    color: #fff;
+
+/* buttons */
+
+.theme-btn {
+    color: #000;
+    border-color: var(--theme-color);
+}
+
+.theme-btn:hover {
+    border: none;
+    background-color: var(--light-theme-color);
+}
+
+.login-btn,
+.signup-btn {
+    font-size: var(--btn-font-size);
+    border-color: var(--light-theme-color);
+    color: var(--theme-color);
+    padding: 0.75rem 0;
+}
+
+.login-btn:hover,
+.signup-btn:hover {
+    border: none;
+    background-color: var(--light-theme-color);
+}
+
+.logOut-btn>a:hover {
     text-decoration: none;
+}
+
+.srch-btn {
+    border-color: var(--light-theme-color);
+}
+
+.srch-btn:hover {
+    border: none;
+    background-color: var(--light-theme-color);
+    color: var(--white);
 }
 
 main {
@@ -43,7 +83,15 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: underline var(--light-theme-color);
+}
+
+
+/* card grid */
+
+.card {
+    min-width: 12rem;
+    max-width: 16rem;
 }
 
 .card-grid {

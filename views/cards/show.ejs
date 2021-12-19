@@ -1,9 +1,9 @@
 <%- include ("../partials/after_login_header.ejs") %>
 
-    <div class="container-fluid card-container" style="max-width: 18rem">
+    <div class="container-fluid p-3 card-container" style="width: 17rem">
         <div class="card border-light">
             <img width="250" height="175" src="<%= card.cardImagePath %>" class="card-img-top" alt="Image" />
-            <div class="card-body">
+            <div class="card-body pb-0">
                 <h5 class="card-title">
                     <%= card.cardName %>
                 </h5>
@@ -35,16 +35,22 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- <div class="row">
-                    <button class="btn btn-light col">
-          <a class="card-link" href="/cards/<%= card.id %>/edit">Edit</a>
-        </button>
-                    <%- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
-                </div> -->
+
+                <!-- <div class="row justify-content-center">
+                    <a class="card-link btn btn-outline-primary btn-light col" href="/cards/<%= card.id %>/edit">Edit</a
+        >
+
+        <%- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
+      </div> -->
             </div>
             <div class="card-footer text-muted small">
                 Added by:
                 <%= card.addedBy.firstName %>
             </div>
+        </div>
+        <div class="text-center mt-2 d-flex justify-content-evenly">
+            <a class="btn text-decoration-none theme-btn" href="/users/dashboard">Dashboard</a
+    >
+    <a class="btn text-decoration-none theme-btn" href="/cards/">All cards</a>
         </div>
     </div>

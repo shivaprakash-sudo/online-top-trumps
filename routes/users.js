@@ -115,7 +115,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.get("/dashboard", ensureAuthenticated, async(req, res) => {
-    let query = Card.find();
+    let query = Card.find().sort({ $natural: -1 });
     if (req.query.cardName != null && req.query.cardName != "") {
         query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
     }
@@ -134,11 +134,9 @@ router.get("/dashboard", ensureAuthenticated, async(req, res) => {
 });
 
 router.get("/profile", ensureAuthenticated, async(req, res) => {
-    const query = Card.find({
+    let query = Card.find({
         addedBy: req.session.passport.user,
-    });
-
-    // const totalCards = query.countDocuments();
+    }).sort({ $natural: -1 });
 
     if (req.query.cardName != null && req.query.cardName != "") {
         query = query.regex("cardName", new RegExp(req.query.cardName, "i"));
@@ -148,7 +146,7 @@ router.get("/profile", ensureAuthenticated, async(req, res) => {
         res.render("./partials/profile", {
             user: req.user,
             cards: cards,
-            // cardCount: totalCards,
+            searchOptions: req.query,
         });
     } catch {
         res.redirect("/profile");

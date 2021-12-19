@@ -1,14 +1,14 @@
 {
-    "name": "simple_login_register_app",
+    "name": "online-top-trumps",
     "version": "1.0.0",
-    "description": "",
+    "description": "Web app about Top Trumps, for my university project",
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
         "devStart": "nodemon server.js"
     },
     "keywords": [],
-    "author": "",
+    "author": "Shiva Prakash Pendem",
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.1",

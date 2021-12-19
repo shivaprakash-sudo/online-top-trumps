@@ -1,29 +1,31 @@
 <%- include ("../partials/after_login_header.ejs") %>
 
     <div class="container-fluid">
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <th scope="row">Name</th>
-                    <td>
-                        <%= user.firstName %>
-                            <%= user.lastName %>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Email</th>
-                    <td>
-                        <%= user.email %>
-                    </td>
-                </tr>
-                <!-- <tr>
-                    <th scope="row">Total number of cards</th>
-                    <td>
-                        <%#= cardCount %>
-                    </td>
-                </tr> -->
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td>
+                            <%= user.firstName %>
+                                <%= user.lastName %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Email</th>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Total number of cards</th>
+                        <td>
+                            <%= cards.length %>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <div>
             <form method="POST" action="/users/<%= user.id %>?_method=DELETE">
@@ -31,11 +33,12 @@
             </form>
         </div>
 
-        <div>
-            <h3>My Cards</h3>
-
-            <div class="grid">
-                <%- include("cardGrid", { cards: cards, large :true }) %>
-            </div>
+        <div class="container-fluid">
+            <h3 class="display-4 my-2">My Cards</h3>
+            <form class="d-flex justify-content-between align-items-center" action="/users/profile" method="GET">
+                <input type="search" class="form-control me-2" name="cardName" placeholder="Card name" aria-label="Search" value="<%= searchOptions.cardName %>" />
+                <button class="btn mb-0 srch-btn" type="submit">Search</button>
+            </form>
+            <%- include("cardGrid", { cards: cards, large :true }) %>
         </div>
     </div>

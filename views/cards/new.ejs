@@ -6,12 +6,19 @@
             <form action="/cards" method="POST" enctype="multipart/form-data">
                 <div class="container-fluid new-card-container">
                     <%- include('_form_fields') %>
-                        <div class="container-fluid d-flex align-items-center">
-                            <a class="btn btn-danger flex-fill" href="/users/dashboard">Cancel</a>
-                            <button class="btn btn-primary mb-0 flex-fill" type="submit">
-          Create
-        </button>
-                        </div>
-                </div>
-            </form>
+                        <div class="container-fluid mt-2 p-2">
+                            <div class="row d-flex justify-content-between">
+                                <div class="col-6 p-0">
+                                    <a class="btn btn-outline-danger px-3 py-2" href="/users/dashboard">Cancel</a
+            >
+          </div>
+          <div class="col-6 p-0">
+            <button class="btn btn-outline-success px-3 py-2" type="submit">
+              Create
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </form>
+</div>
