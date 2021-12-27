@@ -1,4 +1,9 @@
+/* importing Alegreya Sans font from Google fonts */
+
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;700&display=swap");
+
+/* setting up the root variables */
+
 :root {
     --background-color: #e1f2f7;
     --theme-color: #ef0d50;
@@ -8,9 +13,15 @@
     --white: #fff;
 }
 
+
+/* for smooth scrolling effect */
+
 html {
     scroll-behavior: smooth;
 }
+
+
+/* setting the default values for all content before and after */
 
 *,
 *::before,
@@ -22,6 +33,9 @@ html {
     box-sizing: border-box;
 }
 
+
+/* changing the heading color and text decoration */
+
 .header-title:hover {
     color: #000;
     text-decoration: none;
@@ -30,15 +44,24 @@ html {
 
 /* buttons */
 
+
+/* main theme button */
+
 .theme-btn {
     color: #000;
     border-color: var(--theme-color);
 }
 
+
+/* button values when hovered */
+
 .theme-btn:hover {
     border: none;
     background-color: var(--light-theme-color);
 }
+
+
+/* styling for login and signup buttons */
 
 .login-btn,
 .signup-btn {
@@ -48,19 +71,31 @@ html {
     padding: 0.75rem 0;
 }
 
+
+/* style values for login and signup when hovered */
+
 .login-btn:hover,
 .signup-btn:hover {
     border: none;
     background-color: var(--light-theme-color);
 }
 
+
+/* logout button hover values */
+
 .logOut-btn>a:hover {
     text-decoration: none;
 }
 
+
+/* search button border styling */
+
 .srch-btn {
     border-color: var(--light-theme-color);
 }
+
+
+/* search button hover styling */
 
 .srch-btn:hover {
     border: none;
@@ -68,43 +103,56 @@ html {
     color: var(--white);
 }
 
+
+/* styling for main content */
+
 main {
     background-color: var(--background-color);
 }
+
+
+/* margin bottom for headings h2 and h3 */
 
 h2,
 h3 {
     margin-bottom: 1.5rem;
 }
 
+
+/* styling for all links */
+
 a {
     text-decoration: none;
     color: #000;
 }
+
+
+/* hover styling for all links */
 
 a:hover {
     text-decoration: underline var(--light-theme-color);
 }
 
 
-/* card grid */
+/* Card grid */
+
+
+/* card dimensions */
 
 .card {
     min-width: 12rem;
     max-width: 16rem;
 }
 
-.card-grid {
-    margin: auto;
-}
 
-.show-card {
-    min-width: 12rem;
-}
+/* setting the size for new card container */
 
 .new-card-container {
     max-width: 18rem;
 }
+
+
+/* footer styling */
 
 .footer {
     background-color: var(--light-theme-color);

@@ -7,7 +7,11 @@
         "start": "node server.js",
         "devStart": "nodemon server.js"
     },
-    "keywords": [],
+    "keywords": [
+        "top trumps",
+        "online top trumps",
+        "educational top trumps"
+    ],
     "author": "Shiva Prakash Pendem",
     "license": "ISC",
     "dependencies": {

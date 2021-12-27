@@ -1,7 +1,10 @@
+<!-- EJS code for inlcuding before-login header -->
 <%- include ("before_login_header.ejs") %>
     <div class="container-fluid d-flex align-items-center justify-content-center">
         <div class="col-lg-3">
             <h3 class="display-4 text-center">Login</h3>
+
+            <!-- EJS code for inlcuding error messages file -->
             <%- include("./partials/errorMessages") %>
                 <form action="/users/login" method="POST">
                     <div class="form-floating mb-3">

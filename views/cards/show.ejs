@@ -1,53 +1,68 @@
+<!-- including after-login header -->
 <%- include ("../partials/after_login_header.ejs") %>
 
+    <!-- container for the card-->
     <div class="container-fluid p-3 card-container" style="width: 17rem">
+        <!-- card container -->
         <div class="card border-light">
+            <!-- image from its path in the server -->
             <img width="250" height="175" src="<%= card.cardImagePath %>" class="card-img-top" alt="Image" />
+            <!-- container for card body -->
             <div class="card-body pb-0">
+                <!-- card name -->
                 <h5 class="card-title">
                     <%= card.cardName %>
                 </h5>
+                <!-- container table for attribues and their values -->
                 <table class="card-table table border-light">
                     <tbody>
                         <tr>
                             <td>
+                                <!-- attribute 1 -->
                                 <%= card.attributes[0] %>
                             </td>
                             <td>
+                                <!-- value 1 -->
                                 <%= card.values[0] %>
                             </td>
                         </tr>
                         <tr>
                             <td>
+                                <!-- attribute 2 -->
                                 <%= card.attributes[1] %>
                             </td>
                             <td>
+                                <!-- value 2 -->
                                 <%= card.values[1] %>
                             </td>
                         </tr>
                         <tr>
                             <td>
+                                <!-- attribute 3 -->
                                 <%= card.attributes[2] %>
                             </td>
                             <td>
+                                <!-- value 3 -->
                                 <%= card.values[2] %>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
+                <!-- container for edit and delete buttons -->
                 <!-- <div class="row justify-content-center">
                     <a class="card-link btn btn-outline-primary btn-light col" href="/cards/<%= card.id %>/edit">Edit</a
         >
-
-        <%- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
+        <%#- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
       </div> -->
             </div>
+            <!-- first name of the user who create the card -->
             <div class="card-footer text-muted small">
                 Added by:
                 <%= card.addedBy.firstName %>
             </div>
         </div>
+        <!-- container for links to Dashboard and All cards pages -->
         <div class="text-center mt-2 d-flex justify-content-evenly">
             <a class="btn text-decoration-none theme-btn" href="/users/dashboard">Dashboard</a
     >

@@ -1,8 +1,10 @@
 <!-- displays respective error if there are any mistakes in the form -->
+<!-- embedded JavaScript to get error messages from the server and display them on the user screen -->
 <% if (typeof errors != "undefined") { %>
     <% errors.forEach(function (error) {
 %>
         <div class="alert alert-danger" role="alert">
+            <!-- error message -->
             <p class="error-message">
                 <%= error.msg %>
             </p>
@@ -10,14 +12,18 @@
         <% }) %>
             <% } %>
                 <% if (success_msg != "") { %>
+
                     <div class="alert alert-success" role="alert">
+                        <!-- success message -->
                         <p class="success-message">
                             <%= success_msg %>
                         </p>
                     </div>
                     <% } %>
                         <% if (error_msg != "") { %>
+
                             <div class="alert alert-danger" role="alert">
+                                <!-- error message -->
                                 <p class="error-message">
                                     <%= error_msg %>
                                 </p>
@@ -25,6 +31,7 @@
                             <% } %>
                                 <% if (error != "") { %>
                                     <div class="alert alert-danger" role="alert">
+                                        <!-- error message -->
                                         <p class="error-message">
                                             <%= error %>
                                         </p>

@@ -1,59 +1,47 @@
-<div class="card border-secondary col" style="max-width: 18rem">
+<!-- container for card form fields -->
+<div class="card border-secondary col">
+    <!-- image input -->
     <input type="file" name="cardImage" class="form-control card-img-top card-image filepond" placeholder="Image" id="card-image" required />
 
+    <!-- card body container -->
     <div class="card-body form-item">
+        <!-- card name -->
         <input type="text" class="card-title form-control border-light" name="cardName" placeholder="Card name" required />
-    </div>
 
-    <table class="table border-light">
-        <tbody>
-            <tr>
-                <td>
-                    <input class="form-control border-light" type="text" name="attr1" placeholder="Attribute" required />
-                </td>
-                <td>
-                    <input class="form-control border-light" type="number" name="val1" placeholder="Value" required />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="form-control border-light" type="text" name="attr2" placeholder="Attribute" required />
-                </td>
-                <td>
-                    <input class="form-control border-light" type="number" name="val2" placeholder="Value" required />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input class="form-control border-light" type="text" name="attr3" placeholder="Attribute" required />
-                </td>
-                <td>
-                    <input class="form-control border-light" type="number" name="val3" placeholder="Value" required />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<!-- 
-<div class="attributes-container">
-    <div class="form-item">
-        <div class="form-row">
-            <input type="text" name="attr1" placeholder="Attribute" required />
-            <input type="number" name="val1" placeholder="Value" required />
-        </div>
-    </div>
-    <div class="form-item">
-        <div class="form-row">
-            <input type="text" name="attr2" placeholder="Attribute" required />
-            <input type="number" name="val2" placeholder="Value" required />
-        </div>
-    </div>
-    <div class="form-item">
-        <div class="form-row">
-            <input type="text" name="attr3" placeholder="Attribute" required />
-            <input type="number" name="val3" placeholder="Value" required />
-        </div>
+        <!-- table for card atttributes and their values -->
+        <table class="table border-light">
+            <tbody>
+                <tr>
+                    <td>
+                        <!-- attribute 1 -->
+                        <input class="form-control border-light" type="text" name="attr1" placeholder="Attribute" required />
+                    </td>
+                    <td>
+                        <!-- value 1 -->
+                        <input class="form-control border-light" type="number" name="val1" placeholder="Value" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- attribute 2 -->
+                        <input class="form-control border-light" type="text" name="attr2" placeholder="Attribute" required />
+                    </td>
+                    <td>
+                        <!-- value 2 -->
+                        <input class="form-control border-light" type="number" name="val2" placeholder="Value" required />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- attribute 3 -->
+                        <input class="form-control border-light" type="text" name="attr3" placeholder="Attribute" required />
+                    </td>
+                    <td>
+                        <!-- value 3 -->
+                        <input class="form-control border-light" type="number" name="val3" placeholder="Value" required />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-</div> -->

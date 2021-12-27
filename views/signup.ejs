@@ -1,9 +1,13 @@
+<!-- EJS code for inlcuding before-login header -->
 <%- include ("before_login_header.ejs") %>
 
     <div class="container-fluid d-flex align-items-center justify-content-center">
         <div class="col-lg-3">
             <h3 class="display-5 text-center">Sign Up</h3>
+
+            <!-- EJS code for inlcuding error messages file -->
             <%- include("./partials/errorMessages") %>
+
                 <form action="/users/signup" method="POST">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="signup-name" name="firstName" placeholder="Enter Name" value="<%= typeof firstName != 'undefined' ? firstName : '' %>" />

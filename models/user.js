@@ -1,4 +1,7 @@
+// getting mongoose module for generating a schema
 const mongoose = require("mongoose");
+
+// user schema
 const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
@@ -22,6 +25,8 @@ const userSchema = new mongoose.Schema({
     },
 });
 
+// generating user model from user schema
 const User = mongoose.model("User", userSchema);
 
+// exporting the user model
 module.exports = User;

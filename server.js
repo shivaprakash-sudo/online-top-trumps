@@ -4,21 +4,42 @@ if (process.env.NODE_ENV != "production") {
 }
 
 // getting the required modules
+
+// for routing
 const express = require("express");
 const app = express();
+
+// for schema and data modelling
 const mongoose = require("mongoose");
+
+// for layout
 const expressLayouts = require("express-ejs-layouts");
+
+// for user session
 const session = require("express-session");
+
+// for flashing error or success messages
 const flash = require("connect-flash");
+
+// for user authentication
 const passport = require("passport");
 require("./config/passport")(passport);
+
+// for overriding form methods
 const methodOverride = require("method-override");
 
+// getting the routes
+
+// for index
 const indexRouter = require("./routes/index");
+
+// for users
 const userRouter = require("./routes/users");
+
+// for cards
 const cardRouter = require("./routes/cards");
 
-// setting up ejs
+// setting up template engine and layout
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layouts/layout");
@@ -42,17 +63,17 @@ mongoose
         console.log(err);
     });
 
-//getting css and other static files
+//using express static for getting static files
 app.use(express.static("public"));
 
-// bodyparser
+// using bodyparser
 app.use(
     express.urlencoded({
         extended: false,
     })
 );
 
-// express session
+// using express session
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
@@ -61,10 +82,11 @@ app.use(
     })
 );
 
+// using passport functions to authentication and session initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
-// using the flash
+// using the flash to display respective messages
 app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash("success_msg");
@@ -73,7 +95,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// getting the routes
+// using the routes to serve files and data
 app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/cards", cardRouter);

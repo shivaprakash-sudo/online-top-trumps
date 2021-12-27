@@ -1,12 +1,17 @@
+<!-- including after-login header -->
 <%- include ("../partials/after_login_header.ejs") %>
 
+    <!-- container for the page -->
     <div class="container-fluid">
+        <!-- container for responsive table -->
         <div class="table-responsive">
+            <!-- profile in tabular format -->
             <table class="table table-striped">
                 <tbody>
                     <tr>
                         <th scope="row">Name</th>
                         <td>
+                            <!-- EJS code to get first and last names -from the server -->
                             <%= user.firstName %>
                                 <%= user.lastName %>
                         </td>
@@ -14,12 +19,14 @@
                     <tr>
                         <th scope="row">Email</th>
                         <td>
+                            <!-- EJS code to get user email from the server -->
                             <%= user.email %>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">Total number of cards</th>
                         <td>
+                            <!-- EJS code to get total number of cards from the server -->
                             <%= cards.length %>
                         </td>
                     </tr>
@@ -27,18 +34,22 @@
             </table>
         </div>
 
+        <!-- profile delete button -->
         <div>
             <form method="POST" action="/users/<%= user.id %>?_method=DELETE">
                 <button class="btn btn-danger mb-3" type="submit">Delete Account</button>
             </form>
         </div>
 
+        <!-- container for user created cards -->
         <div class="container-fluid">
             <h3 class="display-4 my-2">My Cards</h3>
             <form class="d-flex justify-content-between align-items-center" action="/users/profile" method="GET">
                 <input type="search" class="form-control me-2" name="cardName" placeholder="Card name" aria-label="Search" value="<%= searchOptions.cardName %>" />
                 <button class="btn mb-0 srch-btn" type="submit">Search</button>
             </form>
-            <%- include("cardGrid", { cards: cards, large :true }) %>
+
+            <!-- EJS code to get the cardGrid file code here -->
+            <%- include("../partials/cardGrid", { cards: cards }) %>
         </div>
     </div>

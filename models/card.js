@@ -1,8 +1,13 @@
+// getting mongoose module for generating a schema
 const mongoose = require("mongoose");
+
+// getting path module to use relative paths
 const path = require("path");
 
+// path for images when user uploads them
 const cardImageBasePath = "uploads/cardImages";
 
+// Top Trumps card schema
 const cardSchema = new mongoose.Schema({
     cardName: {
         type: String,
@@ -15,10 +20,6 @@ const cardSchema = new mongoose.Schema({
         required: true,
         default: Date.now,
     },
-    // cardImage: {
-    //     type: Buffer,
-    //     required: true,
-    // },
     cardImageType: {
         type: String,
         required: true,
@@ -30,17 +31,18 @@ const cardSchema = new mongoose.Schema({
     },
 });
 
+// returning the relative image path
 cardSchema.virtual("cardImagePath").get(function() {
-    // this.cardImage != null &&
     if (this.cardImageType != null) {
-        // return `data:${
-        //   this.cardImageType
-        // };charset=utf-8;base64,${this.cardImage.toString("base64")}`;
         return path.join("/", cardImageBasePath, this.cardImageType);
     }
 });
 
+// generating the card model from card schema
 const Card = mongoose.model("Card", cardSchema);
 
+// exporting card model
 module.exports = Card;
+
+// exporting image upload path
 module.exports.cardImageBasePath = cardImageBasePath;
