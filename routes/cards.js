@@ -89,13 +89,13 @@ router.post(
         const fileName = req.file != null ? req.file.filename : null;
 
         // getting the required data variables from the body of the page
-        const { cardName, attr1, attr2, attr3, val1, val2, val3 } = req.body;
+        const { cardName, attr1, attr2, attr3, attr4, val1, val2, val3, val4 } = req.body;
 
         // creating a new card from the variables we recieved from the body
         const card = new Card({
             cardName: cardName,
-            attributes: [attr1, attr2, attr3],
-            values: [val1, val2, val3],
+            attributes: [attr1, attr2, attr3, attr4],
+            values: [val1, val2, val3, val4],
             cardImageType: fileName,
             addedBy: req.session.passport.user,
         });
