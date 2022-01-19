@@ -50,11 +50,11 @@
                 </table>
 
                 <!-- container for edit and delete buttons -->
-                <!-- <div class="row justify-content-center">
-                    <a class="card-link btn btn-outline-primary btn-light col" href="/cards/<%= card.id %>/edit">Edit</a
-        >
-        <%#- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
-      </div> -->
+                <div class="row justify-content-center">
+                    <!-- <a class="card-link btn btn-outline-primary btn-light col" href="/cards/<%= card.id %>/edit">Edit</a
+        > -->
+        <%- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
+      </div>
             </div>
             <!-- first name of the user who create the card -->
             <div class="card-footer text-muted small">
