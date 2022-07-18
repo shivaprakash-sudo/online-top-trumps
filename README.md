@@ -7,6 +7,7 @@
 - Secure user authentication.
 - Dashboard for your recently uploaded cards.
 - Initially pitched to be used in a classroom environment among students for game based learning.
+- [Live demo](https://online-top-trumps.herokuapp.com/)
 
 ### Landing page
 
