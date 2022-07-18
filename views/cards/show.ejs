@@ -46,15 +46,25 @@
                                 <%= card.values[2] %>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <!-- attribute 4 -->
+                                <%= card.attributes[3] %>
+                            </td>
+                            <td>
+                                <!-- value 4 -->
+                                <%= card.values[3] %>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <!-- container for edit and delete buttons -->
-                <!-- <div class="row justify-content-center">
-                    <a class="card-link btn btn-outline-primary btn-light col" href="/cards/<%= card.id %>/edit">Edit</a
-        >
-        <%#- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
-      </div> -->
+                <div class="row justify-content-center">
+                    <!-- <a class="card-link btn btn-outline-primary btn-light col" href="/cards/<%= card.id %>/edit">Edit</a
+        > -->
+        <%- include('../partials/deleteForm', { url: `/cards/${card.id}` }) %>
+      </div>
             </div>
             <!-- first name of the user who create the card -->
             <div class="card-footer text-muted small">
