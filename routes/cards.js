@@ -17,7 +17,7 @@ const Card = require("../models/card");
 const User = require("../models/user");
 
 // setting the upload path in Public folder
-const uploadPath = path.join("public", Card.cardImageBasePath);
+const uploadPath = path.join("tmp", Card.cardImageBasePath);
 
 // setting the acceptable image file formats
 const imageMimeTypes = ["image/jpeg", "image/png", "image/jpg"];
