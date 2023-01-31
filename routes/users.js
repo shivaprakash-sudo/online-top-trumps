@@ -130,10 +130,13 @@ router.post("/signup", (req, res) => {
 // router for accessing the logout request
 router.get("/logout", (req, res) => {
     // logging out
-    req.logout();
-
-    // flashing a success message
-    req.flash("success_msg", "Successfully logged out");
+    req.logout(err=>{
+        if (err) {
+            console.log(err);
+        }
+        // flashing a success message
+        req.flash("success_msg", "Successfully logged out");
+    });
 
     // redirecting the user to login page
     res.redirect("/users/login");
