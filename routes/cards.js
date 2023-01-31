@@ -7,6 +7,9 @@ const router = express.Router();
 // multer module for image uploads
 const multer = require("multer");
 
+// multer cloudinary storage
+const {storage} = require('../cloudinary/index');
+
 // path module for getting relative paths
 const path = require("path");
 
@@ -16,22 +19,11 @@ const Card = require("../models/card");
 // getting the user model
 const User = require("../models/user");
 
-// setting the upload path in Public folder
-const uploadPath = path.join("tmp", Card.cardImageBasePath);
-
-// setting the acceptable image file formats
-const imageMimeTypes = ["image/jpeg", "image/png", "image/jpg"];
-
 // getting the authorization function to check for user login
 const { ensureAuthenticated } = require("../config/auth");
 
-// setting the file fiter for getting only the acceptable image formats and the upload destination path
-const upload = multer({
-    dest: uploadPath,
-    fileFilter: (req, file, callback) => {
-        callback(null, imageMimeTypes.includes(file.mimetype));
-    },
-});
+// image upload destination (cloudinary)
+const upload = multer({ storage });
 
 // route for accessing all cards page
 router.get("/", ensureAuthenticated, async(req, res) => {
@@ -85,8 +77,8 @@ router.post(
     ensureAuthenticated,
     upload.single("cardImage"),
     async(req, res) => {
-        // getting the file name from the file, if there is one
-        const fileName = req.file != null ? req.file.filename : null;
+        // getting the image file
+        const imageFile = req.file;
 
         // getting the required data variables from the body of the page
         const { cardName, attr1, attr2, attr3, val1, val2, val3 } = req.body;
@@ -96,7 +88,10 @@ router.post(
             cardName: cardName,
             attributes: [attr1, attr2, attr3],
             values: [val1, val2, val3],
-            cardImageType: fileName,
+            cardImageType: {
+                path:imageFile.path,
+                fileName: imageFile.filename
+            },
             addedBy: req.session.passport.user,
         });
 
