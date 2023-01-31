@@ -10,9 +10,6 @@ const multer = require("multer");
 // multer cloudinary storage
 const {storage} = require('../cloudinary/index');
 
-// path module for getting relative paths
-const path = require("path");
-
 // getting the card model
 const Card = require("../models/card");
 

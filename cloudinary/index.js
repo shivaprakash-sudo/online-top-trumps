@@ -1,11 +1,10 @@
 const cloudinary = require("cloudinary").v2;
 
 const { CloudinaryStorage } =  require("multer-storage-cloudinary");
-const dotenv = require("dotenv");
 
 // checks to see if development dependencies are required or not
 if (process.env.NODE_ENV !== "production") {
-    dotenv.config();
+    require("dotenv").config();
 }
 
 const cloudinaryParams = {

@@ -112,7 +112,7 @@ router.post("/signup", (req, res) => {
                         newUser
                             .save()
                             .then((value) => {
-                                console.log(value);
+                                // console.log(value);
                                 req.flash(
                                     "success_msg",
                                     "You have successfully signed up and can login now"
